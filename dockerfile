@@ -13,7 +13,10 @@ RUN curl -L -O https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBui
 
 RUN java -jar BuildTools.jar --rev $REV
 
-RUN find * -maxdepth 0 ! -name "*.jar" -exec rm -rf {} \;
+RUN mv spigot-*.jar /opt/spigot.jar
+WORKDIR /opt
+
+RUN rm -rf /opt/spigot
 RUN rm -rf /root/.m2
 
 RUN mkdir /data
@@ -21,4 +24,4 @@ EXPOSE 25565
 
 WORKDIR /data
 
-CMD ["java", "-Xms512M", "-Xmx1536M", "-XX:+UseConcMarkSweepGC", "-jar", "/opt/spigot/spigot.jar", "--noconsole"]
+CMD ["java", "-Xms512M", "-Xmx1536M", "-XX:+UseConcMarkSweepGC", "-jar", "/opt/spigot.jar", "--noconsole"]
