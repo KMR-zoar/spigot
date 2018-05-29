@@ -27,3 +27,6 @@ $ docker run -d -p 25565:25565 -v path_to_data:/data zoar/spigot
 
 新規にサーバーを立ち上げた場合、サーバーを実行するには [Minecraft の EULA](https://account.mojang.com/documents/minecraft_eula) に同意する必要があるため、サーバーの起動に失敗します。  
 `path_to_data` で指定したディレクトリに `eula.txt` が生成されているので EULA に同意できればファイル内の `eula=false` を `eula=true` に書き換えることでコンテナを実行できるようになります。
+
+起動に失敗したコンテナを `docker start` で起こすか、`docker run` で新たにコンテナを起動しても大丈夫です。
+
